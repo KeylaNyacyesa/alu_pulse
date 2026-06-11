@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import '../data/mock_events.dart';
 
-/// EventDetailsPage displays complete information about a selected event.
-/// The screen uses mock event content and local state for RSVP interactions.
+/// EventDetailsPage displays complete information about a selected opportunity.
+/// Event content is provided through EventData so one screen can support many events.
 class EventDetailsPage extends StatefulWidget {
-  const EventDetailsPage({super.key});
+  final EventData event;
+
+  const EventDetailsPage({super.key, required this.event});
 
   @override
   State<EventDetailsPage> createState() => _EventDetailsPageState();
@@ -19,14 +22,14 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
   bool isRsvped = false;
   bool isInterested = false;
 
-  /// Updates RSVP status for the current event.
+  /// Updates RSVP status for the selected event.
   void _toggleRsvp() {
     setState(() {
       isRsvped = !isRsvped;
     });
   }
 
-  /// Updates interested status for the current event.
+  /// Updates interest status for the selected event.
   void _toggleInterested() {
     setState(() {
       isInterested = !isInterested;
@@ -35,11 +38,12 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
 
   @override
   Widget build(BuildContext context) {
+    final event = widget.event;
+
     return Scaffold(
       backgroundColor: darkBlue,
 
       /// Fixed bottom action bar for participation management.
-      /// The bar is kept compact so it does not cover the event details content.
       bottomNavigationBar: Container(
         decoration: const BoxDecoration(
           color: darkBlue,
@@ -83,17 +87,17 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  _buildHeroSection(context),
+                  _buildHeroSection(context, event),
                   Padding(
                     padding: const EdgeInsets.fromLTRB(20, 22, 20, 0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        _buildEventTags(),
+                        _buildEventTags(event.tags),
                         const SizedBox(height: 18),
-                        const Text(
-                          'Climate Action Week',
-                          style: TextStyle(
+                        Text(
+                          event.title,
+                          style: const TextStyle(
                             color: Colors.white,
                             fontSize: 30,
                             fontWeight: FontWeight.bold,
@@ -101,11 +105,11 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                           ),
                         ),
                         const SizedBox(height: 18),
-                        _buildOrganizerCard(),
+                        _buildOrganizerCard(event),
                         const SizedBox(height: 22),
-                        _buildInfoRows(),
+                        _buildInfoRows(event),
                         const SizedBox(height: 26),
-                        _buildAboutSection(),
+                        _buildAboutSection(event.description),
                         const SizedBox(height: 24),
                         _buildCommunityNote(),
                       ],
@@ -120,16 +124,17 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
     );
   }
 
-  /// Top event visual using a gradient placeholder instead of an image asset.
-  Widget _buildHeroSection(BuildContext context) {
+  /// Top event visual using a gradient placeholder.
+  /// This area can later support Image.asset when final assets are available.
+  Widget _buildHeroSection(BuildContext context, EventData event) {
     return Container(
       height: 270,
       padding: const EdgeInsets.all(20),
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [Color(0xFF0E552D), Color(0xFF65A844)],
+          colors: event.gradientColors,
         ),
       ),
       child: Stack(
@@ -154,9 +159,9 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
             right: 20,
             bottom: 34,
             child: Icon(
-              Icons.eco_outlined,
+              event.heroIcon,
               color: Colors.white.withOpacity(0.72),
-              size: 46,
+              size: 48,
             ),
           ),
           Positioned(
@@ -168,9 +173,9 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                 color: yellow,
                 borderRadius: BorderRadius.circular(16),
               ),
-              child: const Text(
-                'Event • Community',
-                style: TextStyle(
+              child: Text(
+                '${event.category} • ALU Pulse',
+                style: const TextStyle(
                   color: darkBlue,
                   fontSize: 13,
                   fontWeight: FontWeight.w700,
@@ -183,7 +188,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
     );
   }
 
-  /// Circular icon button used for back and bookmark actions.
+  /// Circular icon button used for top actions.
   Widget _buildCircleIconButton({
     required IconData icon,
     required VoidCallback onTap,
@@ -204,48 +209,37 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
   }
 
   /// Tags communicate location, category, and program relevance.
-  Widget _buildEventTags() {
+  Widget _buildEventTags(List<String> tags) {
     return Wrap(
       spacing: 8,
       runSpacing: 8,
-      children: [
-        _buildTag('Kigali', Icons.location_on, yellow),
-        _buildTag('BEL', null, Colors.greenAccent),
-        _buildTag('BSE', null, Colors.purpleAccent),
-      ],
+      children: tags.map((tag) {
+        return _buildTag(tag);
+      }).toList(),
     );
   }
 
-  Widget _buildTag(String text, IconData? icon, Color accentColor) {
+  Widget _buildTag(String text) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 11, vertical: 7),
       decoration: BoxDecoration(
-        color: accentColor.withOpacity(0.13),
+        color: yellow.withOpacity(0.13),
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: accentColor.withOpacity(0.25)),
+        border: Border.all(color: yellow.withOpacity(0.25)),
       ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          if (icon != null) ...[
-            Icon(icon, color: accentColor, size: 14),
-            const SizedBox(width: 5),
-          ],
-          Text(
-            text,
-            style: TextStyle(
-              color: accentColor,
-              fontSize: 12,
-              fontWeight: FontWeight.w700,
-            ),
-          ),
-        ],
+      child: Text(
+        text,
+        style: const TextStyle(
+          color: yellow,
+          fontSize: 12,
+          fontWeight: FontWeight.w700,
+        ),
       ),
     );
   }
 
-  /// Organizer section highlights trust and role verification.
-  Widget _buildOrganizerCard() {
+  /// Organizer section highlights who posted or owns the opportunity.
+  Widget _buildOrganizerCard(EventData event) {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
@@ -255,35 +249,35 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
       ),
       child: Row(
         children: [
-          const CircleAvatar(
+          CircleAvatar(
             radius: 26,
-            backgroundColor: Color(0xFF23A36B),
+            backgroundColor: yellow,
             child: Text(
-              'SM',
-              style: TextStyle(
-                color: Colors.white,
+              event.organizerInitials,
+              style: const TextStyle(
+                color: darkBlue,
                 fontSize: 17,
                 fontWeight: FontWeight.bold,
               ),
             ),
           ),
           const SizedBox(width: 14),
-          const Expanded(
+          Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Sustainability Mission',
+                  event.organizer,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.white,
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                SizedBox(height: 4),
-                Text(
+                const SizedBox(height: 4),
+                const Text(
                   'Verified organizer',
                   style: TextStyle(color: softText, fontSize: 12),
                 ),
@@ -318,24 +312,24 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
   }
 
   /// Main event information shown as scannable rows.
-  Widget _buildInfoRows() {
+  Widget _buildInfoRows(EventData event) {
     return Column(
       children: [
         _buildInfoRow(
           icon: Icons.calendar_month_outlined,
-          title: 'May 26 – 30',
-          subtitle: 'All week',
+          title: event.date,
+          subtitle: event.time,
         ),
         _buildDivider(),
         _buildInfoRow(
           icon: Icons.location_on_outlined,
-          title: 'Across campus',
-          subtitle: 'Kigali Campus',
+          title: event.location,
+          subtitle: 'ALU campus activity',
         ),
         _buildDivider(),
         _buildInfoRow(
           icon: Icons.people_outline,
-          title: '120 going • 54 interested',
+          title: event.attendeeSummary,
           subtitle: 'Tap RSVP to join',
         ),
       ],
@@ -396,30 +390,28 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
   }
 
   /// Event description and value proposition.
-  Widget _buildAboutSection() {
-    return const Column(
+  Widget _buildAboutSection(String description) {
+    return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          'About this event',
+        const Text(
+          'About this opportunity',
           style: TextStyle(
             color: Colors.white,
             fontSize: 21,
             fontWeight: FontWeight.bold,
           ),
         ),
-        SizedBox(height: 14),
+        const SizedBox(height: 14),
         Text(
-          'A week of tree planting, clean-ups, and climate talks led by student missions. '
-          'Participants will collaborate with peers, join practical campus activities, '
-          'and contribute to sustainability goals across the ALU community.',
-          style: TextStyle(color: softText, fontSize: 15, height: 1.55),
+          description,
+          style: const TextStyle(color: softText, fontSize: 15, height: 1.55),
         ),
       ],
     );
   }
 
-  /// Lightweight community prompt to connect the details page with engagement.
+  /// Lightweight engagement prompt linked to the community feature.
   Widget _buildCommunityNote() {
     return Container(
       padding: const EdgeInsets.all(16),
