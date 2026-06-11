@@ -20,8 +20,13 @@ class ProfilePage extends StatelessWidget {
         ),
         actions: [
           IconButton(
-            icon: const Icon(Icons.wb_sunny_outlined, color: Colors.white70),
-            onPressed: () {},
+            icon: const Icon(Icons.logout_outlined, color: Colors.white70),
+            onPressed: () {
+              Navigator.of(context).pushAndRemoveUntil(
+                MaterialPageRoute(builder: (_) => const _SignInPage()),
+                (route) => false,
+              );
+            },
           ),
         ],
       ),
@@ -55,9 +60,9 @@ class ProfilePage extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(
-builder: (_) => const MyRSVPsPage()
-                  ),
+                    MaterialPageRoute(
+                      builder: (_) => const MyRSVPsPage(),
+                    ),
                 );
               },
             ),
@@ -333,4 +338,27 @@ class _PlaceholderPage extends StatelessWidget {
     );
   }
 }
+
+class _SignInPage extends StatelessWidget {
+  const _SignInPage();
+
+  @override
+  Widget build(BuildContext context) {
+    return const Scaffold(
+      backgroundColor: Color(0xFF071222),
+      body: Center(
+        child: Text(
+          'Sign in',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+
 
