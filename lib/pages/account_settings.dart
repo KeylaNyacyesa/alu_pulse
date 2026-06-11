@@ -16,7 +16,11 @@ class AccountSettingsPage extends StatelessWidget {
         ),
         title: const Text(
           'Settings',
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: Colors.white),
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 20,
+            color: Colors.white,
+          ),
         ),
       ),
       body: ListView(
@@ -33,7 +37,10 @@ class AccountSettingsPage extends StatelessWidget {
               children: [
                 _buildFigmaTile(Icons.person_outline_rounded, 'Edit profile'),
                 const Divider(color: Colors.white10, height: 1),
-                _buildFigmaTile(Icons.wb_sunny_outlined, 'ALU email & password'),
+                _buildFigmaTile(
+                  Icons.wb_sunny_outlined,
+                  'ALU email & password',
+                ),
                 const Divider(color: Colors.white10, height: 1),
                 _buildFigmaTile(Icons.location_on_outlined, 'Campus • Kigali'),
               ],
@@ -50,9 +57,15 @@ class AccountSettingsPage extends StatelessWidget {
             ),
             child: Column(
               children: [
-                _buildFigmaTile(Icons.notifications_none_rounded, 'Followed clubs & categories'),
+                _buildFigmaTile(
+                  Icons.notifications_none_rounded,
+                  'Followed clubs & categories',
+                ),
                 const Divider(color: Colors.white10, height: 1),
-                _buildFigmaTile(Icons.chat_bubble_outline_rounded, 'Chat notifications'),
+                _buildFigmaTile(
+                  Icons.chat_bubble_outline_rounded,
+                  'Chat notifications',
+                ),
               ],
             ),
           ),
@@ -100,11 +113,18 @@ class AccountSettingsPage extends StatelessWidget {
       leading: Icon(icon, color: const Color(0xFFFFC72C), size: 22),
       title: Text(
         title,
-        style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w500, fontSize: 15),
+        style: const TextStyle(
+          color: Colors.white,
+          fontWeight: FontWeight.w500,
+          fontSize: 15,
+        ),
       ),
-      trailing: const Icon(Icons.chevron_right, color: Color(0x338F98AA), size: 20),
+      trailing: const Icon(
+        Icons.chevron_right,
+        color: Color(0x338F98AA),
+        size: 20,
+      ),
       onTap: () {},
     );
   }
 }
-

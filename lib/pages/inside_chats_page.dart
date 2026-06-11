@@ -24,14 +24,23 @@ class InsideChatPage extends StatelessWidget {
             const Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Pitch Night Crew', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-                Text('18 members', style: TextStyle(fontSize: 11, color: Colors.grey)),
+                Text(
+                  'Pitch Night Crew',
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                ),
+                Text(
+                  '18 members',
+                  style: TextStyle(fontSize: 11, color: Colors.grey),
+                ),
               ],
             ),
           ],
         ),
         actions: [
-          IconButton(icon: const Icon(Icons.wb_sunny_outlined, color: Colors.white70), onPressed: () {}),
+          IconButton(
+            icon: const Icon(Icons.wb_sunny_outlined, color: Colors.white70),
+            onPressed: () {},
+          ),
         ],
       ),
       body: Column(
@@ -39,8 +48,14 @@ class InsideChatPage extends StatelessWidget {
           Container(
             margin: const EdgeInsets.symmetric(vertical: 12),
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-            decoration: BoxDecoration(color: Colors.white10, borderRadius: BorderRadius.circular(12)),
-            child: const Text('Today', style: TextStyle(color: Colors.grey, fontSize: 11)),
+            decoration: BoxDecoration(
+              color: Colors.white10,
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: const Text(
+              'Today',
+              style: TextStyle(color: Colors.grey, fontSize: 11),
+            ),
           ),
           Expanded(
             child: ListView(
@@ -48,7 +63,8 @@ class InsideChatPage extends StatelessWidget {
               children: [
                 _buildIncomingMessage(
                   sender: 'Fatima',
-                  text: 'Hey team! Don\'t forget our session tomorrow at 9am. See you there! 🚀',
+                  text:
+                      'Hey team! Don\'t forget our session tomorrow at 9am. See you there! 🚀',
                   time: '23:15',
                   initials: 'F',
                   avatarColor: Colors.teal,
@@ -62,10 +78,7 @@ class InsideChatPage extends StatelessWidget {
                   avatarColor: Colors.blue,
                   reaction: '👍 2',
                 ),
-                _buildOutgoingMessage(
-                  text: 'Can\'t wait 🔥',
-                  time: '09:20',
-                ),
+                _buildOutgoingMessage(text: 'Can\'t wait 🔥', time: '09:20'),
                 _buildIncomingMessage(
                   sender: 'Jean',
                   text: 'I\'ve uploaded the workshop materials below 👇',
@@ -103,36 +116,71 @@ class InsideChatPage extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          CircleAvatar(radius: 16, backgroundColor: avatarColor, child: Text(initials, style: const TextStyle(color: Colors.white, fontSize: 12))),
+          CircleAvatar(
+            radius: 16,
+            backgroundColor: avatarColor,
+            child: Text(
+              initials,
+              style: const TextStyle(color: Colors.white, fontSize: 12),
+            ),
+          ),
           const SizedBox(width: 8),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(sender, style: const TextStyle(color: Color(0xFFFFC72C), fontSize: 12, fontWeight: FontWeight.w600)),
+              Text(
+                sender,
+                style: const TextStyle(
+                  color: Color(0xFFFFC72C),
+                  fontSize: 12,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
               const SizedBox(height: 4),
               Stack(
                 clipBehavior: Clip.none,
                 children: [
                   Container(
                     padding: const EdgeInsets.all(12),
-                    decoration: BoxDecoration(color: const Color(0xFF121826), borderRadius: BorderRadius.circular(16)),
+                    decoration: BoxDecoration(
+                      color: const Color(0xFF121826),
+                      borderRadius: BorderRadius.circular(16),
+                    ),
                     constraints: const BoxConstraints(maxWidth: 240),
-                    child: Text(text, style: const TextStyle(color: Colors.white, fontSize: 14)),
+                    child: Text(
+                      text,
+                      style: const TextStyle(color: Colors.white, fontSize: 14),
+                    ),
                   ),
                   if (reaction != null)
                     Positioned(
                       bottom: -10,
                       left: 12,
                       child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-                        decoration: BoxDecoration(color: const Color(0xFF1C2434), borderRadius: BorderRadius.circular(10)),
-                        child: Text(reaction, style: const TextStyle(fontSize: 10, color: Colors.white)),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 6,
+                          vertical: 2,
+                        ),
+                        decoration: BoxDecoration(
+                          color: const Color(0xFF1C2434),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Text(
+                          reaction,
+                          style: const TextStyle(
+                            fontSize: 10,
+                            color: Colors.white,
+                          ),
+                        ),
                       ),
                     ),
                 ],
               ),
               const SizedBox(height: 4),
-              Text(time, style: const TextStyle(color: Colors.grey, fontSize: 10)),
+              Text(
+                time,
+                style: const TextStyle(color: Colors.grey, fontSize: 10),
+              ),
             ],
           ),
         ],
@@ -151,13 +199,25 @@ class InsideChatPage extends StatelessWidget {
             children: [
               Container(
                 padding: const EdgeInsets.all(12),
-                decoration: BoxDecoration(color: const Color(0xFFFFC72C), borderRadius: BorderRadius.circular(16)),
-                child: Text(text, style: const TextStyle(color: Colors.black, fontWeight: FontWeight.w500)),
+                decoration: BoxDecoration(
+                  color: const Color(0xFFFFC72C),
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                child: Text(
+                  text,
+                  style: const TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
               ),
               const SizedBox(height: 4),
               Row(
                 children: [
-                  Text(time, style: const TextStyle(color: Colors.grey, fontSize: 10)),
+                  Text(
+                    time,
+                    style: const TextStyle(color: Colors.grey, fontSize: 10),
+                  ),
                   const SizedBox(width: 4),
                   const Icon(Icons.done_all, color: Colors.green, size: 12),
                 ],
@@ -182,23 +242,52 @@ class InsideChatPage extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          CircleAvatar(radius: 16, backgroundColor: avatarColor, child: Text(initials, style: const TextStyle(color: Colors.white, fontSize: 12))),
+          CircleAvatar(
+            radius: 16,
+            backgroundColor: avatarColor,
+            child: Text(
+              initials,
+              style: const TextStyle(color: Colors.white, fontSize: 12),
+            ),
+          ),
           const SizedBox(width: 8),
           Container(
             padding: const EdgeInsets.all(12),
-            decoration: BoxDecoration(color: const Color(0xFF121826), borderRadius: BorderRadius.circular(16)),
+            decoration: BoxDecoration(
+              color: const Color(0xFF121826),
+              borderRadius: BorderRadius.circular(16),
+            ),
             width: 220,
             child: Row(
               children: [
-                const Icon(Icons.insert_drive_file, color: Color(0xFFFFC72C), size: 32),
+                const Icon(
+                  Icons.insert_drive_file,
+                  color: Color(0xFFFFC72C),
+                  size: 32,
+                ),
                 const SizedBox(width: 10),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(fileName, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 13), maxLines: 1, overflow: TextOverflow.ellipsis),
+                      Text(
+                        fileName,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 13,
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
                       const SizedBox(height: 2),
-                      Text(fileSize, style: const TextStyle(color: Colors.grey, fontSize: 11)),
+                      Text(
+                        fileSize,
+                        style: const TextStyle(
+                          color: Colors.grey,
+                          fontSize: 11,
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -223,8 +312,14 @@ class InsideChatPage extends StatelessWidget {
                 hintStyle: const TextStyle(color: Colors.grey),
                 filled: true,
                 fillColor: const Color(0xFF121826),
-                suffixIcon: const Icon(Icons.sentiment_satisfied_alt, color: Colors.grey),
-                border: OutlineInputBorder(borderRadius: BorderRadius.circular(24), borderSide: BorderSide.none),
+                suffixIcon: const Icon(
+                  Icons.sentiment_satisfied_alt,
+                  color: Colors.grey,
+                ),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(24),
+                  borderSide: BorderSide.none,
+                ),
                 contentPadding: const EdgeInsets.symmetric(horizontal: 16),
               ),
             ),
@@ -232,7 +327,10 @@ class InsideChatPage extends StatelessWidget {
           const SizedBox(width: 8),
           CircleAvatar(
             backgroundColor: const Color(0xFFFFC72C),
-            child: IconButton(icon: const Icon(Icons.send, color: Colors.black), onPressed: () {}),
+            child: IconButton(
+              icon: const Icon(Icons.send, color: Colors.black),
+              onPressed: () {},
+            ),
           ),
         ],
       ),

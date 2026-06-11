@@ -60,9 +60,7 @@ class ProfilePage extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                   context,
-                    MaterialPageRoute(
-                      builder: (_) => const MyRSVPsPage(),
-                    ),
+                  MaterialPageRoute(builder: (_) => const MyRSVPsPage()),
                 );
               },
             ),
@@ -83,7 +81,8 @@ class ProfilePage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (_) => const _PlaceholderPage(title: 'My Posts'),
+                          builder: (_) =>
+                              const _PlaceholderPage(title: 'My Posts'),
                         ),
                       );
                     },
@@ -96,7 +95,8 @@ class ProfilePage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (_) => const _PlaceholderPage(title: 'Saved'),
+                          builder: (_) =>
+                              const _PlaceholderPage(title: 'Saved'),
                         ),
                       );
                     },
@@ -109,7 +109,7 @@ class ProfilePage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-builder: (_) => const NotificationsPage()
+                          builder: (_) => const NotificationsPage(),
                         ),
                       );
                     },
@@ -122,7 +122,7 @@ builder: (_) => const NotificationsPage()
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                  builder: (_) => const AccountSettingsPage(),
+                          builder: (_) => const AccountSettingsPage(),
                         ),
                       );
                     },
@@ -306,10 +306,7 @@ class _MetricItem extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 4),
-        Text(
-          label,
-          style: const TextStyle(fontSize: 12, color: Colors.grey),
-        ),
+        Text(label, style: const TextStyle(fontSize: 12, color: Colors.grey)),
       ],
     );
   }
@@ -332,7 +329,11 @@ class _PlaceholderPage extends StatelessWidget {
       body: Center(
         child: Text(
           title,
-          style: const TextStyle(color: Colors.white, fontSize: 22, fontWeight: FontWeight.w600),
+          style: const TextStyle(
+            color: Colors.white,
+            fontSize: 22,
+            fontWeight: FontWeight.w600,
+          ),
         ),
       ),
     );
@@ -359,6 +360,3 @@ class _SignInPage extends StatelessWidget {
     );
   }
 }
-
-
-

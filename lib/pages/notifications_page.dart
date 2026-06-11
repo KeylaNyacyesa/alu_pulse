@@ -16,7 +16,11 @@ class NotificationsPage extends StatelessWidget {
         ),
         title: const Text(
           'Notifications',
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: Colors.white),
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 20,
+            color: Colors.white,
+          ),
         ),
         actions: [
           IconButton(
@@ -28,18 +32,24 @@ class NotificationsPage extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.all(16.0),
         children: [
-
           Container(
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
               color: const Color(0xFF1E1E38).withOpacity(0.4),
               borderRadius: BorderRadius.circular(16),
-              border: Border.all(color: const Color(0xFFFFC72C).withOpacity(0.3), width: 1),
+              border: Border.all(
+                color: const Color(0xFFFFC72C).withOpacity(0.3),
+                width: 1,
+              ),
             ),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Icon(Icons.notifications_active_outlined, color: Color(0xFFFFC72C), size: 22),
+                const Icon(
+                  Icons.notifications_active_outlined,
+                  color: Color(0xFFFFC72C),
+                  size: 22,
+                ),
                 const SizedBox(width: 12),
                 Expanded(
                   child: Column(
@@ -47,12 +57,20 @@ class NotificationsPage extends StatelessWidget {
                     children: [
                       const Text(
                         'Only what you follow',
-                        style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 14),
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 14,
+                        ),
                       ),
                       const SizedBox(height: 4),
                       Text(
                         "You're notified about clubs you follow — not everything. Manage in settings.",
-                        style: TextStyle(color: Colors.white.withOpacity(0.6), fontSize: 12, height: 1.4),
+                        style: TextStyle(
+                          color: Colors.white.withOpacity(0.6),
+                          fontSize: 12,
+                          height: 1.4,
+                        ),
                       ),
                     ],
                   ),
@@ -61,7 +79,6 @@ class NotificationsPage extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 20),
-
 
           _buildNotificationItem(
             icon: Icons.hub,
@@ -113,7 +130,10 @@ class NotificationsPage extends StatelessWidget {
           Center(
             child: Text(
               "You're all caught up",
-              style: TextStyle(color: Colors.white.withOpacity(0.3), fontSize: 13),
+              style: TextStyle(
+                color: Colors.white.withOpacity(0.3),
+                fontSize: 13,
+              ),
             ),
           ),
         ],
@@ -122,7 +142,6 @@ class NotificationsPage extends StatelessWidget {
   }
 
   Widget _buildNotificationItem({
-
     required IconData icon,
     required Color iconBg,
     required String title,
@@ -149,16 +168,35 @@ class NotificationsPage extends StatelessWidget {
               children: [
                 RichText(
                   text: TextSpan(
-                    style: const TextStyle(fontSize: 14, color: Colors.white, height: 1.3),
+                    style: const TextStyle(
+                      fontSize: 14,
+                      color: Colors.white,
+                      height: 1.3,
+                    ),
                     children: [
-                      TextSpan(text: title, style: const TextStyle(fontWeight: FontWeight.bold)),
-                      TextSpan(text: boldText, style: TextStyle(color: Colors.white.withOpacity(0.8))),
-                      TextSpan(text: actionText, style: TextStyle(color: Colors.white.withOpacity(0.8))),
+                      TextSpan(
+                        text: title,
+                        style: const TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      TextSpan(
+                        text: boldText,
+                        style: TextStyle(color: Colors.white.withOpacity(0.8)),
+                      ),
+                      TextSpan(
+                        text: actionText,
+                        style: TextStyle(color: Colors.white.withOpacity(0.8)),
+                      ),
                     ],
                   ),
                 ),
                 const SizedBox(height: 4),
-                Text(time, style: TextStyle(color: Colors.white.withOpacity(0.4), fontSize: 11)),
+                Text(
+                  time,
+                  style: TextStyle(
+                    color: Colors.white.withOpacity(0.4),
+                    fontSize: 11,
+                  ),
+                ),
               ],
             ),
           ),
@@ -177,4 +215,3 @@ class NotificationsPage extends StatelessWidget {
     );
   }
 }
-

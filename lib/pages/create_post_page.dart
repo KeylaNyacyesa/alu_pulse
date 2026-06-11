@@ -98,16 +98,15 @@ class _CreatePostPageState extends State<CreatePostPage> {
                   // ---------- Title ----------
                   _label('Title', required: true),
                   const SizedBox(height: 10),
-                  _textField(
-                    hint: 'Give your post a clear, descriptive title',
-                  ),
+                  _textField(hint: 'Give your post a clear, descriptive title'),
                   const SizedBox(height: 24),
 
                   // ---------- Description ----------
                   _label('Description', required: true),
                   const SizedBox(height: 10),
                   _textField(
-                    hint: 'Describe what this is about, who should '
+                    hint:
+                        'Describe what this is about, who should '
                         'attend, what to expect...',
                     maxLines: 4,
                   ),
@@ -338,11 +337,7 @@ class _CreatePostPageState extends State<CreatePostPage> {
   }
 
   /// A standard dark-themed text input, with an optional leading icon.
-  Widget _textField({
-    required String hint,
-    IconData? icon,
-    int maxLines = 1,
-  }) {
+  Widget _textField({required String hint, IconData? icon, int maxLines = 1}) {
     return TextField(
       maxLines: maxLines,
       style: const TextStyle(fontSize: 14, color: Colors.white),
@@ -353,8 +348,10 @@ class _CreatePostPageState extends State<CreatePostPage> {
         prefixIcon: icon == null ? null : Icon(icon, size: 20, color: softText),
         filled: true,
         fillColor: cardBlue,
-        contentPadding:
-            const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
+        contentPadding: const EdgeInsets.symmetric(
+          horizontal: 14,
+          vertical: 14,
+        ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(14),
           borderSide: BorderSide(color: Colors.white.withOpacity(0.06)),
@@ -468,12 +465,21 @@ class _CreatePostPageState extends State<CreatePostPage> {
             ),
           ),
           const SizedBox(height: 8),
-          _checkRow('Require RSVP', _requireRsvp,
-              (v) => setState(() => _requireRsvp = v ?? false)),
-          _checkRow('Enable discussion chat', _enableChat,
-              (v) => setState(() => _enableChat = v ?? false)),
-          _checkRow('Send reminders to attendees', _sendReminders,
-              (v) => setState(() => _sendReminders = v ?? false)),
+          _checkRow(
+            'Require RSVP',
+            _requireRsvp,
+            (v) => setState(() => _requireRsvp = v ?? false),
+          ),
+          _checkRow(
+            'Enable discussion chat',
+            _enableChat,
+            (v) => setState(() => _enableChat = v ?? false),
+          ),
+          _checkRow(
+            'Send reminders to attendees',
+            _sendReminders,
+            (v) => setState(() => _sendReminders = v ?? false),
+          ),
         ],
       ),
     );
@@ -529,7 +535,8 @@ class _CreatePostPageState extends State<CreatePostPage> {
               ),
             ),
             TextSpan(
-              text: 'Your profile will be shown as the organizer. Only '
+              text:
+                  'Your profile will be shown as the organizer. Only '
                   'verified club leaders and authorized community members '
                   'can post events and opportunities.',
             ),
@@ -586,10 +593,7 @@ class _DashedPainter extends CustomPainter {
     for (final metric in path.computeMetrics()) {
       double distance = 0;
       while (distance < metric.length) {
-        canvas.drawPath(
-          metric.extractPath(distance, distance + dash),
-          paint,
-        );
+        canvas.drawPath(metric.extractPath(distance, distance + dash), paint);
         distance += dash + gap;
       }
     }
