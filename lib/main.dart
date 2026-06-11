@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'pages/main_navigation.dart';
+import 'pages/sign_in_page.dart';
 
 void main() {
   runApp(const ALUPulseApp());
@@ -28,7 +28,7 @@ class ALUPulseApp extends StatelessWidget {
         useMaterial3: true,
       ),
 
-      home: const MainNavigation(),
+      home: const SignInPage(),
     );
   }
 }
