@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 /// CreatePostPage lets verified members publish a new event or opportunity.
 ///
@@ -31,6 +32,10 @@ class _CreatePostPageState extends State<CreatePostPage> {
   bool _requireRsvp = false;
   bool _enableChat = false;
   bool _sendReminders = false;
+
+  // Image picker + the currently chosen cover image (null until one is picked).
+  final ImagePicker _picker = ImagePicker();
+  XFile? _coverImage;
 
   static const _postTypes = [
     'Event',
@@ -260,6 +265,14 @@ class _CreatePostPageState extends State<CreatePostPage> {
 
   // ---- Button handlers (placeholders for now) ----
 
+  /// Opens the device's photo gallery and stores the chosen image.
+  Future<void> _pickCoverImage() async {
+    final picked = await _picker.pickImage(source: ImageSource.gallery);
+    if (picked != null) {
+      setState(() => _coverImage = picked);
+    }
+  }
+
   void _onSaveDraft() {
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(content: Text('Draft saved (not wired up yet)')),
@@ -355,35 +368,81 @@ class _CreatePostPageState extends State<CreatePostPage> {
   }
 
   /// The dashed-border "Add cover image" box.
+  /// The cover image box. Tapping it opens the photo gallery; once an image
+  /// is chosen it fills the box, otherwise the dashed placeholder shows.
   Widget _coverImageBox() {
-    return _DashedBorder(
-      color: Colors.white.withOpacity(0.22),
-      radius: 14,
-      child: Container(
-        height: 150,
-        width: double.infinity,
-        alignment: Alignment.center,
-        decoration: BoxDecoration(
-          color: cardBlue,
-          borderRadius: BorderRadius.circular(14),
-        ),
-        child: const Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(Icons.image_outlined, size: 34, color: softText),
-            SizedBox(height: 12),
-            Text(
-              'Add cover image',
-              style: TextStyle(fontSize: 14, color: Colors.white),
+    return GestureDetector(
+      onTap: _pickCoverImage,
+      child: _coverImage == null
+          ? _DashedBorder(
+              color: Colors.white.withOpacity(0.22),
+              radius: 14,
+              child: Container(
+                height: 150,
+                width: double.infinity,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  color: cardBlue,
+                  borderRadius: BorderRadius.circular(14),
+                ),
+                child: const Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(Icons.image_outlined, size: 34, color: softText),
+                    SizedBox(height: 12),
+                    Text(
+                      'Add cover image',
+                      style: TextStyle(fontSize: 14, color: Colors.white),
+                    ),
+                    SizedBox(height: 4),
+                    Text(
+                      'Recommended: 1200 x 675px',
+                      style: TextStyle(fontSize: 11.5, color: softText),
+                    ),
+                  ],
+                ),
+              ),
+            )
+          : Stack(
+              children: [
+                // The chosen image, clipped to rounded corners.
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(14),
+                  child: Image.network(
+                    _coverImage!.path,
+                    height: 150,
+                    width: double.infinity,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                // A small "change image" hint in the corner.
+                Positioned(
+                  right: 10,
+                  bottom: 10,
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 10,
+                      vertical: 6,
+                    ),
+                    decoration: BoxDecoration(
+                      color: darkBlue.withOpacity(0.7),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: const Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Icon(Icons.edit, size: 14, color: Colors.white),
+                        SizedBox(width: 5),
+                        Text(
+                          'Change',
+                          style: TextStyle(color: Colors.white, fontSize: 12),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
             ),
-            SizedBox(height: 4),
-            Text(
-              'Recommended: 1200 x 675px',
-              style: TextStyle(fontSize: 11.5, color: softText),
-            ),
-          ],
-        ),
-      ),
     );
   }
 
