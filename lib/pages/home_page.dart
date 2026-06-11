@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'event_details_page.dart';
 
 /// HomePage represents the main landing screen of ALU Pulse.
 /// It uses mock data and placeholder gradient cards instead of real images.
@@ -29,7 +30,7 @@ class HomePage extends StatelessWidget {
                   const SizedBox(height: 20),
                   _buildSearchBar(),
                   const SizedBox(height: 22),
-                  _buildFeaturedCard(),
+                  _buildFeaturedCard(context),
                   const SizedBox(height: 26),
                   _buildSectionTitle('Latest Opportunities', 'See all'),
                   const SizedBox(height: 14),
@@ -138,59 +139,68 @@ class HomePage extends StatelessWidget {
 
   /// Featured card uses a gradient placeholder instead of an image.
   /// Later, this can be replaced with an Image.asset or network image.
-  Widget _buildFeaturedCard() {
-    return Container(
-      height: 190,
-      padding: const EdgeInsets.all(18),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(26),
-        gradient: const LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [Color(0xFFFFBE22), Color(0xFFFFD66B)],
+  Widget _buildFeaturedCard(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (_) => const EventDetailsPage()),
+        );
+      },
+      borderRadius: BorderRadius.circular(26),
+      child: Container(
+        height: 190,
+        padding: const EdgeInsets.all(18),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(26),
+          gradient: const LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [Color(0xFFFFBE22), Color(0xFFFFD66B)],
+          ),
         ),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-            decoration: BoxDecoration(
-              color: darkBlue.withOpacity(0.18),
-              borderRadius: BorderRadius.circular(30),
-            ),
-            child: const Text(
-              'Featured Opportunity',
-              style: TextStyle(
-                color: darkBlue,
-                fontSize: 12,
-                fontWeight: FontWeight.w700,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+              decoration: BoxDecoration(
+                color: darkBlue.withOpacity(0.18),
+                borderRadius: BorderRadius.circular(30),
+              ),
+              child: const Text(
+                'Featured Opportunity',
+                style: TextStyle(
+                  color: darkBlue,
+                  fontSize: 12,
+                  fontWeight: FontWeight.w700,
+                ),
               ),
             ),
-          ),
-          const Spacer(),
-          const Text(
-            'Leadership Lab 2026',
-            style: TextStyle(
-              color: darkBlue,
-              fontSize: 25,
-              fontWeight: FontWeight.bold,
+            const Spacer(),
+            const Text(
+              'Leadership Lab 2026',
+              style: TextStyle(
+                color: darkBlue,
+                fontSize: 25,
+                fontWeight: FontWeight.bold,
+              ),
             ),
-          ),
-          const SizedBox(height: 8),
-          const Text(
-            'Join students building practical leadership solutions for African communities.',
-            style: TextStyle(color: darkBlue, fontSize: 14, height: 1.3),
-          ),
-          const SizedBox(height: 14),
-          Row(
-            children: [
-              _featuredInfo(Icons.calendar_today_outlined, 'Fri, 14 Jun'),
-              const SizedBox(width: 14),
-              _featuredInfo(Icons.people_outline, '120 joined'),
-            ],
-          ),
-        ],
+            const SizedBox(height: 8),
+            const Text(
+              'Join students building practical leadership solutions for African communities.',
+              style: TextStyle(color: darkBlue, fontSize: 14, height: 1.3),
+            ),
+            const SizedBox(height: 14),
+            Row(
+              children: [
+                _featuredInfo(Icons.calendar_today_outlined, 'Fri, 14 Jun'),
+                const SizedBox(width: 14),
+                _featuredInfo(Icons.people_outline, '120 joined'),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
