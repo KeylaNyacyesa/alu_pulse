@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'account_settings.dart';
 import 'my_rsvps_page.dart';
 import 'notifications_page.dart';
+import 'sign_in_page.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -23,7 +24,7 @@ class ProfilePage extends StatelessWidget {
             icon: const Icon(Icons.logout_outlined, color: Colors.white70),
             onPressed: () {
               Navigator.of(context).pushAndRemoveUntil(
-                MaterialPageRoute(builder: (_) => const _SignInPage()),
+                MaterialPageRoute(builder: (_) => const SignInPage()),
                 (route) => false,
               );
             },
