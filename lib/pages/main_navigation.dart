@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'home_page.dart';
 
 /// MainNavigation controls the bottom navigation of the app.
 /// For now, Home, Explore, Post, Chats, and Profile are connected.
@@ -16,7 +17,7 @@ class _MainNavigationState extends State<MainNavigation> {
   /// These are the main pages shown when the user taps the bottom navigation.
   /// Home and Explore will be developed fully in the next steps.
   final List<Widget> _pages = const [
-    PlaceholderPage(title: 'Home Page'),
+    HomePage(),
     PlaceholderPage(title: 'Explore Page'),
     PlaceholderPage(title: 'Post Page'),
     PlaceholderPage(title: 'Chats Page'),
