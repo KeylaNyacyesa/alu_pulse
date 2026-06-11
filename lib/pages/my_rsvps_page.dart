@@ -23,7 +23,11 @@ class _MyRSVPsPageState extends State<MyRSVPsPage> {
         ),
         title: const Text(
           'My RSVPs',
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: Colors.white),
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 20,
+            color: Colors.white,
+          ),
         ),
       ),
       body: Padding(
@@ -47,7 +51,9 @@ class _MyRSVPsPageState extends State<MyRSVPsPage> {
                       onTap: () => setState(() => isGoingSelected = true),
                       child: Container(
                         decoration: BoxDecoration(
-                          color: isGoingSelected ? const Color(0xFFFFC72C) : Colors.transparent,
+                          color: isGoingSelected
+                              ? const Color(0xFFFFC72C)
+                              : Colors.transparent,
                           borderRadius: BorderRadius.circular(10),
                         ),
                         alignment: Alignment.center,
@@ -67,7 +73,9 @@ class _MyRSVPsPageState extends State<MyRSVPsPage> {
                       onTap: () => setState(() => isGoingSelected = false),
                       child: Container(
                         decoration: BoxDecoration(
-                          color: !isGoingSelected ? const Color(0xFFFFC72C) : Colors.transparent,
+                          color: !isGoingSelected
+                              ? const Color(0xFFFFC72C)
+                              : Colors.transparent,
                           borderRadius: BorderRadius.circular(10),
                         ),
                         alignment: Alignment.center,
@@ -75,7 +83,9 @@ class _MyRSVPsPageState extends State<MyRSVPsPage> {
                           'Interested',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            color: !isGoingSelected ? Colors.black : Colors.grey,
+                            color: !isGoingSelected
+                                ? Colors.black
+                                : Colors.grey,
                             fontSize: 14,
                           ),
                         ),
@@ -158,19 +168,30 @@ class _MyRSVPsPageState extends State<MyRSVPsPage> {
               children: [
                 Text(
                   title,
-                  style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: 14),
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                    fontSize: 14,
+                  ),
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                 ),
                 const SizedBox(height: 6),
                 Row(
                   children: [
-                    Icon(Icons.calendar_today_outlined, color: Colors.white.withOpacity(0.4), size: 12),
+                    Icon(
+                      Icons.calendar_today_outlined,
+                      color: Colors.white.withOpacity(0.4),
+                      size: 12,
+                    ),
                     const SizedBox(width: 6),
                     Expanded(
                       child: Text(
                         date,
-                        style: TextStyle(color: Colors.white.withOpacity(0.4), fontSize: 12),
+                        style: TextStyle(
+                          color: Colors.white.withOpacity(0.4),
+                          fontSize: 12,
+                        ),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                       ),
@@ -179,7 +200,10 @@ class _MyRSVPsPageState extends State<MyRSVPsPage> {
                 ),
                 const SizedBox(height: 8),
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 8,
+                    vertical: 2,
+                  ),
                   decoration: BoxDecoration(
                     color: const Color(0xFF10B981).withOpacity(0.15),
                     borderRadius: BorderRadius.circular(6),
@@ -187,11 +211,19 @@ class _MyRSVPsPageState extends State<MyRSVPsPage> {
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      const Icon(Icons.check, color: Color(0xFF10B981), size: 12),
+                      const Icon(
+                        Icons.check,
+                        color: Color(0xFF10B981),
+                        size: 12,
+                      ),
                       const SizedBox(width: 4),
                       Text(
                         statusText,
-                        style: const TextStyle(color: Color(0xFF10B981), fontSize: 11, fontWeight: FontWeight.bold),
+                        style: const TextStyle(
+                          color: Color(0xFF10B981),
+                          fontSize: 11,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ],
                   ),
@@ -200,10 +232,13 @@ class _MyRSVPsPageState extends State<MyRSVPsPage> {
             ),
           ),
           const SizedBox(width: 8),
-          Icon(Icons.chevron_right, color: Colors.white.withOpacity(0.2), size: 20),
+          Icon(
+            Icons.chevron_right,
+            color: Colors.white.withOpacity(0.2),
+            size: 20,
+          ),
         ],
       ),
     );
   }
 }
-

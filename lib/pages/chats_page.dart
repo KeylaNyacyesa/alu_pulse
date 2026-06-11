@@ -14,7 +14,11 @@ class ChatsPage extends StatelessWidget {
         elevation: 0,
         title: const Text(
           'Chats',
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24, color: Colors.white),
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 24,
+            color: Colors.white,
+          ),
         ),
         actions: [
           IconButton(
@@ -25,7 +29,10 @@ class ChatsPage extends StatelessWidget {
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(60),
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+            padding: const EdgeInsets.symmetric(
+              horizontal: 16.0,
+              vertical: 8.0,
+            ),
             child: TextField(
               decoration: InputDecoration(
                 hintText: 'Search chats...',
@@ -123,12 +130,18 @@ class ChatsPage extends StatelessWidget {
       child: ListTile(
         contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
         leading: CircleAvatar(
-          backgroundColor: Color(avatarColor.value & 0x00FFFFFF).withOpacity(0.2),
+          backgroundColor: Color(
+            avatarColor.value & 0x00FFFFFF,
+          ).withOpacity(0.2),
           child: Icon(icon, color: avatarColor),
         ),
         title: Text(
           title,
-          style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: 15),
+          style: const TextStyle(
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+            fontSize: 15,
+          ),
         ),
         subtitle: Padding(
           padding: const EdgeInsets.only(top: 4.0),
@@ -143,7 +156,10 @@ class ChatsPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            Text(time, style: const TextStyle(color: Colors.grey, fontSize: 12)),
+            Text(
+              time,
+              style: const TextStyle(color: Colors.grey, fontSize: 12),
+            ),
             const SizedBox(height: 6),
             if (unreadCount > 0)
               Container(
@@ -154,7 +170,11 @@ class ChatsPage extends StatelessWidget {
                 ),
                 child: Text(
                   '$unreadCount',
-                  style: const TextStyle(color: Colors.black, fontSize: 10, fontWeight: FontWeight.bold),
+                  style: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 10,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
           ],
@@ -169,4 +189,3 @@ class ChatsPage extends StatelessWidget {
     );
   }
 }
-

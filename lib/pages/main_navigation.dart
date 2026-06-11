@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'create_post_page.dart';
 import 'chats_page.dart';
 import 'explore_page.dart';
 import 'home_page.dart';
@@ -23,7 +23,7 @@ class _MainNavigationState extends State<MainNavigation> {
   final List<Widget> _pages = const [
     HomePage(),
     ExplorePage(),
-    PlaceholderPage(title: 'Post Page'),
+    CreatePostPage(),
     ChatsPage(),
     ProfilePage(),
   ];
