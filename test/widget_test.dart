@@ -20,7 +20,10 @@ void main() {
   ) async {
     await tester.pumpWidget(const ALUPulseApp());
 
-    // Tap the "Sign Up" link at the bottom of the sign-in screen.
+    // Tap the "Sign Up" link at the bottom of the sign-in screen
+    // (scroll it into view first in case it sits below the fold).
+    await tester.ensureVisible(find.text('Sign Up'));
+    await tester.pumpAndSettle();
     await tester.tap(find.text('Sign Up'));
     await tester.pumpAndSettle();
 
@@ -28,7 +31,7 @@ void main() {
     expect(find.text('Create account'), findsOneWidget);
     expect(find.text('BSE'), findsOneWidget);
     expect(find.text('BEL'), findsOneWidget);
-    expect(find.text('BIT'), findsOneWidget);
+    expect(find.text('IBT'), findsOneWidget);
   });
 
   testWidgets('Sign Up requires a degree to be chosen', (
